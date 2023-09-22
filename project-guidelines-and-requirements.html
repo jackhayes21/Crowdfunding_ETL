@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Files</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 15px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-dark">
+        <hr>
+<h2 id="title-13-project-2">title: &quot;13: Project 2&quot;</h2>
+<div id="bootcamp"><img style="display: none;" src="https://static.bc-edx.com/data/dl-1-2/m13/lms/img/banner.png" alt="lesson banner" />
+<p>For the ETL mini project, you will work with a partner to practice building an ETL pipeline using Python, Pandas, and either Python dictionary methods or regular expressions to extract and transform the data. After you transform the data, you'll create four CSV files and use the CSV file data to create an ERD and a table schema. Finally, you’ll upload the CSV file data into a Postgres database.</p>
+<p>Since this is a one-week project, make sure that you have done at least half of your project before the third day of class to stay on track.</p>
+<p>Although you and your partner will divide the work, it’s essential to collaborate and communicate while working on different parts of the project. Be sure to check in with your partner regularly and offer support.</p>
+<h3 id="files">Files</h3>
+<p>Download the starter code and files to help you get started:</p>
+<p><a href="https://static.bc-edx.com/data/dl-1-2/m13/lms/starter/Starter_Files.zip">Project 2 ETL files</a></p>
+<h3 id="before-you-begin">Before You Begin</h3>
+<ol>
+<li>
+<p>Have one member of your group create a new repository, named <code>Crowdfunding_ETL</code>, for this project. Add your partner as a collaborator. <strong>Do not add this project to an existing repository</strong>.</p>
+</li>
+<li>
+<p>Clone the new repository to your computer.</p>
+</li>
+<li>
+<p>Have one person rename the <code>ETL_Mini_Project_starter_code.ipynb</code> file with the first name initial and last name of each member of the group, for example, <code>ETL_Mini_Project_NRomanoff_JSmith.ipynb</code>. Then, add this Jupyter notebook file and the Resources folder containing the <code>crowdfunding.xlsx</code> and the <code>contacts.xlsx</code> files to your repository.</p>
+</li>
+<li>
+<p>Push the changes to GitHub.</p>
+</li>
+<li>
+<p>Have your partner pull the changes, so both of you have the same notebook available on your computer.</p>
+</li>
+<li>
+<p>As you work through the project deliverables, you may find it helpful to break up the work across other notebooks that you each work on individually. However, once complete, please combine all the subsections back into the final ETL_Mini_Project notebook.</p>
+</li>
+</ol>
+<h3 id="instructions">Instructions</h3>
+<p>The instructions for this mini project are divided into the following subsections:</p>
+<ul>
+<li>Create the Category and Subcategory DataFrames</li>
+<li>Create the Campaign DataFrame</li>
+<li>Create the Contacts DataFrame</li>
+<li>Create the Crowdfunding Database</li>
+</ul>
+<h4 id="create-the-category-and-subcategory-dataframes">Create the Category and Subcategory DataFrames</h4>
+<ol>
+<li>
+<p>Extract and transform the <code>crowdfunding.xlsx</code> Excel data to create a category DataFrame that has the following columns:</p>
+<ul>
+<li>
+<p>A &quot;category_id&quot; column that has entries going sequentially from &quot;cat1&quot; to &quot;cat<em>n</em>&quot;, where <em>n</em> is the number of unique categories</p>
+</li>
+<li>
+<p>A &quot;category&quot; column that contains only the category titles</p>
+</li>
+<li>
+<p>The following image shows this category DataFrame:</p>
+<p><img src="https://static.bc-edx.com/data/dl-1-2/m13/lms/img/category_DataFrame.png" alt="category DataFrame"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Export the category DataFrame as <code>category.csv</code> and save it to your GitHub repository.</p>
+</li>
+<li>
+<p>Extract and transform the <code>crowdfunding.xlsx</code> Excel data to create a subcategory DataFrame that has the following columns:</p>
+<ul>
+<li>
+<p>A &quot;subcategory_id&quot; column that has entries going sequentially from &quot;subcat1&quot; to &quot;subcat<em>n</em>&quot;, where <em>n</em> is the number of unique subcategories</p>
+</li>
+<li>
+<p>A &quot;subcategory&quot; column that contains only the subcategory titles</p>
+</li>
+<li>
+<p>The following image shows this subcategory DataFrame:</p>
+<p><img src="https://static.bc-edx.com/data/dl-1-2/m13/lms/img/subcategory_DataFrame.png" alt="subcategory DataFrame"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Export the subcategory DataFrame as <code>subcategory.csv</code> and save it to your GitHub repository.</p>
+</li>
+</ol>
+<h4 id="create-the-campaign-dataframe">Create the Campaign DataFrame</h4>
+<ol>
+<li>
+<p>Extract and transform the <code>crowdfunding.xlsx</code> Excel data to create a campaign DataFrame has the following columns:</p>
+<ul>
+<li>
+<p>The &quot;cf_id&quot; column</p>
+</li>
+<li>
+<p>The &quot;contact_id&quot; column</p>
+</li>
+<li>
+<p>The &quot;company_name&quot; column</p>
+</li>
+<li>
+<p>The &quot;blurb&quot; column, renamed to &quot;description&quot;</p>
+</li>
+<li>
+<p>The &quot;goal&quot; column, converted to the <code>float</code> data type</p>
+</li>
+<li>
+<p>The &quot;pledged&quot; column, converted to the <code>float</code> data type</p>
+</li>
+<li>
+<p>The &quot;outcome&quot; column</p>
+</li>
+<li>
+<p>The &quot;backers_count&quot; column</p>
+</li>
+<li>
+<p>The &quot;country&quot; column</p>
+</li>
+<li>
+<p>The &quot;currency&quot; column</p>
+</li>
+<li>
+<p>The &quot;launched_at&quot; column, renamed to &quot;launch_date&quot; and with the UTC times converted to the <code>datetime</code> format</p>
+</li>
+<li>
+<p>The &quot;deadline&quot; column, renamed to &quot;end_date&quot; and with the UTC times converted to the <code>datetime</code> format</p>
+</li>
+<li>
+<p>The &quot;category_id&quot; column, with unique identification numbers matching those in the &quot;category_id&quot; column of the category DataFrame</p>
+</li>
+<li>
+<p>The &quot;subcategory_id&quot; column, with the unique identification numbers matching those in the &quot;subcategory_id&quot; column of the subcategory DataFrame</p>
+</li>
+<li>
+<p>The following image shows this campaign DataFrame:</p>
+<p><img src="https://static.bc-edx.com/data/dl-1-2/m13/lms/img/campaign_DataFrame.png" alt="campaign DataFrame"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Export the campaign DataFrame as <code>campaign.csv</code> and save it to your GitHub repository.</p>
+</li>
+</ol>
+<h4 id="create-the-contacts-dataframe">Create the Contacts DataFrame</h4>
+<ol>
+<li>
+<p>Choose one of the following two options for extracting and transforming the data from the <code>contacts.xlsx</code> Excel data:</p>
+<ul>
+<li>
+<p><strong>Option 1:</strong> Use Python dictionary methods.</p>
+</li>
+<li>
+<p><strong>Option 2:</strong> Use regular expressions.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>If you chose Option 1, complete the following steps:</p>
+<ul>
+<li>Import the <code>contacts.xlsx</code> file into a DataFrame.</li>
+<li>Iterate through the DataFrame, converting each row to a dictionary.</li>
+<li>Iterate through each dictionary, doing the following:
+<ul>
+<li>Extract the dictionary values from the keys by using a Python list comprehension.</li>
+<li>Add the values for each row to a new list.</li>
+</ul>
+</li>
+<li>Create a new DataFrame that contains the extracted data.</li>
+<li>Split each &quot;name&quot; column value into a first and last name, and place each in a new column.</li>
+<li>Clean and export the DataFrame as <code>contacts.csv</code> and save it to your GitHub repository.</li>
+</ul>
+</li>
+<li>
+<p>If you chose Option 2, complete the following steps:</p>
+<ul>
+<li>Import the <code>contacts.xlsx</code> file into a DataFrame.</li>
+<li>Extract the &quot;contact_id&quot;, &quot;name&quot;, and &quot;email&quot; columns by using regular expressions.</li>
+<li>Create a new DataFrame with the extracted data.</li>
+<li>Convert the &quot;contact_id&quot; column to the integer type.</li>
+<li>Split each &quot;name&quot; column value into a first and a last name, and place each in a new column.</li>
+<li>Clean and then export the DataFrame as <code>contacts.csv</code> and save it to your GitHub repository.</li>
+</ul>
+</li>
+<li>
+<p>Check that your final DataFrame resembles the one in the following image:</p>
+<p><img src="https://static.bc-edx.com/data/dl-1-2/m13/lms/img/contact_DataFrame_final.png" alt="final contact DataFrame"></p>
+</li>
+</ol>
+<h4 id="create-the-crowdfunding-database">Create the Crowdfunding Database</h4>
+<ol>
+<li>
+<p>Inspect the four CSV files, and then sketch an ERD of the tables by using <a href="http://www.quickdatabasediagrams.com">QuickDBD</a>.</p>
+</li>
+<li>
+<p>Use the information from the ERD to create a table schema for each CSV file.</p>
+<p><strong>Note:</strong> Remember to specify the data types, primary keys, foreign keys, and other constraints.</p>
+</li>
+<li>
+<p>Save the database schema as a Postgres file named <code>crowdfunding_db_schema.sql</code>, and save it to your GitHub repository.</p>
+</li>
+<li>
+<p>Create a new Postgres database, named <code>crowdfunding_db</code>.</p>
+</li>
+<li>
+<p>Using the database schema, create the tables in the correct order to handle the foreign keys.</p>
+</li>
+<li>
+<p>Verify the table creation by running a <code>SELECT</code> statement for each table.</p>
+</li>
+<li>
+<p>Import each CSV file into its corresponding SQL table.</p>
+</li>
+<li>
+<p>Verify that each table has the correct data by running a <code>SELECT</code> statement for each.</p>
+</li>
+</ol>
+<h4 id="hints">Hints</h4>
+<ul>
+<li>
+<p>To split each &quot;category &amp; sub-category&quot; column value into &quot;category&quot; and &quot;subcategory&quot; column values, use <code>df[[&quot;new_column1&quot;,&quot;new_column2&quot;]] = df[&quot;column&quot;].str.split()</code>. Make sure to pass the correct parameters to the <code>split()</code> function.</p>
+</li>
+<li>
+<p>To get the unique category and subcategory values from the &quot;category&quot; and &quot;subcategory&quot; columns, create a NumPy array where the array length equals the number of unique categories and unique subcategories from each column. For information about how to do so, see <a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html">numpy.arange</a> in the NumPy documentation.</p>
+</li>
+<li>
+<p>To create the category and subcategory identification numbers, use a list comprehension to add the &quot;cat&quot; string or the &quot;subcat&quot; string to each number in the category or the subcategory array, respectively.</p>
+</li>
+<li>
+<p>For more information about creating a new Pandas DataFrame, see the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas.DataFrame</a> in the Pandas documentation.</p>
+</li>
+<li>
+<p>To convert the &quot;goal&quot; and &quot;pledged&quot; columns to the <code>float</code> data type, use the <code>astype()</code> method.</p>
+</li>
+<li>
+<p>To convert the &quot;launch_date&quot; and &quot;end_date&quot; UTC times to the <code>datetime</code> format, see the <code>Transform_Grocery_Orders_Solved.ipynb</code> activity solution.</p>
+</li>
+<li>
+<p>For more information about how to add the &quot;category_id&quot; and &quot;subcategory_id&quot; unique identification numbers to the campaign DataFrame, see the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html">pandas.DataFrame.merge</a> in the Pandas documentation.</p>
+</li>
+</ul>
+<h3 id="support-and-resources">Support and Resources</h3>
+<p>Your instructional team will provide support during classes and office hours. You will also have access to learning assistants and tutors to help you with topics as needed. Make sure to take advantage of these resources as you collaborate with your partner on this project.</p>
+<h3 id="requirements">Requirements</h3>
+<h4 id="a-category-dataframe-is-created-15-points">A Category DataFrame is Created (15 points)</h4>
+<ul>
+<li>The DataFrame contains a &quot;category_id&quot; column that has entries going sequentially from &quot;cat1&quot; to &quot;cat<em>n</em>&quot;, where <em>n</em> is the number of unique categories (5 points)</li>
+<li>The DataFrame has a &quot;category&quot; column that contains only the category titles (5 points)</li>
+<li>The category DataFrame is exported as <code>category.csv</code> (5 points)</li>
+</ul>
+<h4 id="a-subcategory-dataframe-is-created-15-points">A Subcategory DataFrame is Created (15 points)</h4>
+<ul>
+<li>The DataFrame contains a &quot;subcategory_id&quot; column that has entries going sequentially from &quot;subcat1&quot; to &quot;subcat<em>n</em>&quot;, where <em>n</em> is the number of unique subcategories (5 points)</li>
+<li>The DataFrame contains a &quot;subcategory&quot; column that contains only the subcategory titles (5 points)</li>
+<li>The subcategory DataFrame is exported as <code>subcategory.csv</code> (5 points)</li>
+</ul>
+<h4 id="a-campaign-dataframe-is-created-30-points">A Campaign DataFrame is Created (30 points)</h4>
+<ul>
+<li>The DataFrame has the following columns: (25 points)
+<ul>
+<li>A &quot;cf_id&quot; column</li>
+<li>A &quot;contact_id&quot; column</li>
+<li>A &quot;company_name&quot; column</li>
+<li>A &quot;description&quot; column</li>
+<li>A &quot;goal&quot; column that is a <code>float</code> data type</li>
+<li>A &quot;pledged&quot; column that is a <code>float</code> data type</li>
+<li>An &quot;outcome&quot; column</li>
+<li>A &quot;backers_count&quot; column</li>
+<li>A &quot;country&quot; column</li>
+<li>A &quot;currency&quot; column</li>
+<li>A &quot;launch_date&quot; with the time formatted as &quot;YYYY-MM-DD&quot;</li>
+<li>An &quot;end_date&quot; with the time formatted as &quot;YYYY-MM-DD&quot;</li>
+<li>A &quot;category_id&quot; column that contains the unique identification numbers matching those in the &quot;category_id&quot; column of the category DataFrame</li>
+<li>A &quot;subcategory_id&quot; column that contains the unique identification numbers matching those in the &quot;subcategory_id&quot; column of the subcategory DataFrame</li>
+</ul>
+</li>
+<li>The campaign DataFrame is exported as <code>campaign.csv</code> (5 points)</li>
+</ul>
+<h4 id="a-contacts-dataframe-is-created-15-points">A Contacts DataFrame is Created (15 points)</h4>
+<ul>
+<li>The DataFrame has the following columns: (10 points)
+<ul>
+<li>A &quot;contact_id&quot; column</li>
+<li>A &quot;first_name&quot; column</li>
+<li>A &quot;last_name&quot; column</li>
+<li>An &quot;email&quot; column</li>
+</ul>
+</li>
+<li>The contacts DataFrame is exported as <code>contacts.csv</code> (5 points)</li>
+</ul>
+<h4 id="a-crowdfunding-database-is-created-25-points">A Crowdfunding Database is Created (25 points)</h4>
+<ul>
+<li>A database schema labeled, <code>crowdfunding_db_schema.sql</code> is created (5 points)</li>
+<li>A <code>crowdfunding_db</code> is created using the <code>crowdfunding_db_schema.sql</code> file (5 points)</li>
+<li>The database has the appropriate primary and foreign keys and relationships (5 points)</li>
+<li>Each CSV file is imported into the appropriate table without errors (5 points)</li>
+<li>The data from each table is displayed using a <code>SELECT *</code> statement (5 points)</li>
+</ul>
+<p>This project will be evaluated against the requirements and assigned a grade according to the following table:</p>
+<table>
+<thead>
+<tr>
+<th>Grade</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A (+/-)</td>
+<td>90+</td>
+</tr>
+<tr>
+<td>B (+/-)</td>
+<td>80–89</td>
+</tr>
+<tr>
+<td>C (+/-)</td>
+<td>70–79</td>
+</tr>
+<tr>
+<td>D (+/-)</td>
+<td>60–69</td>
+</tr>
+<tr>
+<td>F (+/-)</td>
+<td>&lt; 60</td>
+</tr>
+</tbody>
+</table>
+<h3 id="submission">Submission</h3>
+<p>You are required to submit the URL of your GitHub repository for grading.</p>
+<blockquote>
+<p><strong>Note:</strong> Projects are requirements for graduation. While you are allowed to miss up to two Challenge assignments and still earn your certificate, projects cannot be skipped.</p>
+</blockquote>
+<h2 id="references">References</h2>
+<p>Data for this dataset was generated by edX Boot Camps LLC, and is intended for educational purposes only.</p>
+
+        
+        
+    </body>
+    </html>
